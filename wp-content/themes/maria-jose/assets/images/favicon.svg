@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Maria Jose">
+  <defs>
+    <linearGradient id="bg" x1="8" y1="6" x2="58" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1a0710"/>
+      <stop offset="0.58" stop-color="#080b14"/>
+      <stop offset="1" stop-color="#02040a"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="12" y1="12" x2="54" y2="50" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#c74354"/>
+      <stop offset="1" stop-color="#8f1d2c"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#bg)"/>
+  <path
+    fill="none"
+    stroke="url(#accent)"
+    stroke-linecap="round"
+    stroke-width="4"
+    d="M14 44c6-16 12-24 18-24 5 0 6 9 1 22 8-17 15-25 22-25"
+  />
+  <path
+    fill="none"
+    stroke="#e8b85c"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="3"
+    d="M48 17v22"
+  />
+  <circle cx="43" cy="42" r="6" fill="#e8b85c"/>
+  <circle cx="52" cy="16" r="4" fill="#c74354"/>
+  <path fill="#fff7df" d="M18 49h28v4H18z" opacity="0.9"/>
+</svg>

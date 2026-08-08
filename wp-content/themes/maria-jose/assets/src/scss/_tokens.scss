@@ -1,0 +1,18 @@
+$bp-mobile: 640px;
+$bp-tablet: 920px;
+
+:root {
+  --font-display: Georgia, 'Times New Roman', serif;
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --ink: #f8fbff;
+  --ink-muted: rgba(248, 251, 255, .68);
+  --night: #030712;
+  --panel: #0f172a;
+  --wine: #8f1d2c;
+  --wine-light: #c74354;
+  --gold: #e8b85c;
+  --line: rgba(248, 251, 255, .11);
+  --content: 1120px;
+  --radius: 10px;
+}
+

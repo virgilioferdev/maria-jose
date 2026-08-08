@@ -1,0 +1,13 @@
+{
+  "name": "maria-jose-wordpress-theme",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "sass --watch assets/src/scss/main.scss:assets/dist/css/main.css --style=expanded --source-map",
+    "build": "sass assets/src/scss/main.scss assets/dist/css/main.css --style=compressed --no-source-map"
+  },
+  "devDependencies": {
+    "sass": "^1.101.0"
+  }
+}
+

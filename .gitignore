@@ -1,0 +1,52 @@
+# Ignore the entire WordPress installation by default.
+/*
+
+# Keep repository-level files.
+!/.gitignore
+!/README.md
+
+# Allow custom content to be selectively tracked.
+!/wp-content/
+/wp-content/*
+
+# Track the custom theme only.
+!/wp-content/themes/
+/wp-content/themes/*
+!/wp-content/themes/maria-jose/
+!/wp-content/themes/maria-jose/**
+
+# Track installed plugins and must-use plugins.
+!/wp-content/plugins/
+!/wp-content/plugins/**
+!/wp-content/mu-plugins/
+!/wp-content/mu-plugins/**
+
+# Ignore local theme dependencies and development artifacts.
+/wp-content/themes/maria-jose/node_modules/
+/wp-content/themes/maria-jose/.sass-cache/
+/wp-content/themes/maria-jose/**/*.map
+/wp-content/themes/maria-jose/.DS_Store
+
+# Keep compiled theme assets tracked for deployment.
+!/wp-content/themes/maria-jose/assets/dist/
+!/wp-content/themes/maria-jose/assets/dist/**
+
+# Ignore generated WordPress content.
+/wp-content/uploads/
+/wp-content/cache/
+/wp-content/upgrade/
+/wp-content/backups/
+/wp-content/backup-*/
+/wp-content/debug.log
+
+# Ignore sensitive configuration and environment files.
+/wp-config.php
+/.env
+/.env.*
+!/.env.example
+
+# Ignore editor and operating system files.
+/.idea/
+/.vscode/
+**/.DS_Store
+Thumbs.db

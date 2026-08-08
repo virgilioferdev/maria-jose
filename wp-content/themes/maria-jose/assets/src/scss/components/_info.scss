@@ -1,0 +1,5 @@
+@use '../tokens' as *;
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:58px}.shows{display:grid;gap:10px}.show{min-height:76px;padding:14px;display:grid;grid-template-columns:76px 1fr;gap:16px;align-items:center;border:1px solid var(--line);border-radius:8px;background:rgba(15,23,42,.72);transition:.18s ease}.show:hover{transform:translateX(4px);border-color:rgba(199,67,84,.44);background:rgba(15,23,42,.94)}.show time{min-height:54px;display:grid;place-items:center;border-radius:6px;background:rgba(143,29,44,.2)}.show time strong{font-size:1.5rem;line-height:1}.show time span{color:var(--wine-light);font-size:.75rem;font-weight:900}.show p,.about p{margin-bottom:0;color:var(--ink-muted);line-height:1.7}.about__content{display:grid;grid-template-columns:150px 1fr;gap:28px;align-items:center}.about__content img{width:150px;aspect-ratio:1;border:1px solid rgba(199,67,84,.5);border-radius:50%;object-fit:cover;object-position:center 32%}.about__content .button{margin-top:22px}
+@media(max-width:$bp-tablet){.info-grid{grid-template-columns:1fr}}
+@media(max-width:$bp-mobile){.show{grid-template-columns:62px 1fr}.about__content{grid-template-columns:1fr}}
+
