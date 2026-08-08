@@ -11,7 +11,7 @@ $about_image = $about_image_id ? wp_get_attachment_image_url( $about_image_id, '
 			<?php if ( $shows ) : foreach ( $shows as $show ) : $date = (string) get_post_meta( $show->ID, '_show_date', true ); $timestamp = strtotime( $date ); ?>
 				<article class="show"><time datetime="<?php echo esc_attr( $date ); ?>"><strong><?php echo esc_html( $timestamp ? wp_date( 'd', $timestamp ) : '—' ); ?></strong><span><?php echo esc_html( $timestamp ? strtoupper( wp_date( 'M', $timestamp ) ) : '' ); ?></span></time><div><h3><?php echo esc_html( $show->post_title ); ?></h3><p><?php echo esc_html( get_post_meta( $show->ID, '_show_city', true ) ); ?></p></div></article>
 			<?php endforeach; else : ?>
-				<article class="show"><time datetime="2026-07-19"><strong>19</strong><span>JUL</span></time><div><h3>Fiesta San Santiago</h3><p>Campo de Vasco, Tarija</p></div></article>
+				<p class="agenda__empty"><?php esc_html_e( 'No hay presentaciones programadas en este momento.', 'maria-jose' ); ?></p>
 			<?php endif; ?>
 		</div>
 	</div>
@@ -20,4 +20,3 @@ $about_image = $about_image_id ? wp_get_attachment_image_url( $about_image_id, '
 		<div class="about__content"><img src="<?php echo esc_url( $about_image ); ?>" alt="<?php esc_attr_e( 'Retrato de María José', 'maria-jose' ); ?>" loading="lazy"><div><p><?php echo esc_html( maria_jose_mod( 'about_copy', 'María José canta desde la raíz chapaca con canciones llenas de alegría, energía de fiesta y una presencia pensada para conectar con públicos de todas las edades.' ) ); ?></p><a class="button button--ghost" href="#contacto"><?php esc_html_e( 'Conocer más', 'maria-jose' ); ?></a></div></div>
 	</div>
 </section>
-
