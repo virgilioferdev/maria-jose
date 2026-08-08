@@ -1,6 +1,7 @@
 <?php
 /** @package Maria_Jose */
 $shows = get_posts( array( 'post_type' => 'mj_show', 'posts_per_page' => 6, 'meta_key' => '_show_date', 'orderby' => 'meta_value', 'order' => 'ASC' ) );
+$today = current_datetime()->format( 'Y-m-d' );
 $about_image_id = (int) get_theme_mod( 'about_image' );
 $about_image = $about_image_id ? wp_get_attachment_image_url( $about_image_id, 'large' ) : MARIA_JOSE_URI . '/assets/images/about-maria-jose.jpg';
 ?>
@@ -8,9 +9,28 @@ $about_image = $about_image_id ? wp_get_attachment_image_url( $about_image_id, '
 	<div id="agenda" class="agenda" data-reveal>
 		<?php maria_jose_section_heading( 'Agenda' ); ?>
 		<div class="shows">
-			<?php if ( $shows ) : foreach ( $shows as $show ) : $date = (string) get_post_meta( $show->ID, '_show_date', true ); $timestamp = strtotime( $date ); ?>
-				<article class="show"><time datetime="<?php echo esc_attr( $date ); ?>"><strong><?php echo esc_html( $timestamp ? wp_date( 'd', $timestamp ) : '—' ); ?></strong><span><?php echo esc_html( $timestamp ? strtoupper( wp_date( 'M', $timestamp ) ) : '' ); ?></span></time><div><h3><?php echo esc_html( $show->post_title ); ?></h3><p><?php echo esc_html( get_post_meta( $show->ID, '_show_city', true ) ); ?></p></div></article>
-			<?php endforeach; else : ?>
+			<?php if ( $shows ) : ?>
+				<?php foreach ( $shows as $show ) : ?>
+					<?php
+					$date      = (string) get_post_meta( $show->ID, '_show_date', true );
+					$timestamp = strtotime( $date );
+					$is_past   = $date && $date < $today;
+					?>
+					<article class="show<?php echo $is_past ? ' show--past' : ''; ?>">
+						<time datetime="<?php echo esc_attr( $date ); ?>">
+							<strong><?php echo esc_html( $timestamp ? wp_date( 'd', $timestamp ) : '—' ); ?></strong>
+							<span><?php echo esc_html( $timestamp ? strtoupper( wp_date( 'M', $timestamp ) ) : '' ); ?></span>
+						</time>
+						<div>
+							<?php if ( $is_past ) : ?>
+								<span class="show__status"><?php esc_html_e( 'Evento finalizado', 'maria-jose' ); ?></span>
+							<?php endif; ?>
+							<h3><?php echo esc_html( $show->post_title ); ?></h3>
+							<p><?php echo esc_html( get_post_meta( $show->ID, '_show_city', true ) ); ?></p>
+						</div>
+					</article>
+				<?php endforeach; ?>
+			<?php else : ?>
 				<p class="agenda__empty"><?php esc_html_e( 'No hay presentaciones programadas en este momento.', 'maria-jose' ); ?></p>
 			<?php endif; ?>
 		</div>

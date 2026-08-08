@@ -32,12 +32,22 @@ function maria_jose_render_social_links( string $class = 'socials' ): void {
 	<?php
 }
 
-function maria_jose_section_heading( string $title, string $url = '', string $label = '' ): void {
+function maria_jose_section_heading(
+	string $title,
+	string $url = '',
+	string $label = '',
+	bool $open_in_new_tab = false
+): void {
 	?>
 	<div class="section-heading">
 		<div><h2><?php echo esc_html( $title ); ?></h2><span aria-hidden="true"></span></div>
 		<?php if ( $url && $label ) : ?>
-			<a class="section-link" href="<?php echo esc_url( $url ); ?>"><?php echo esc_html( $label ); ?></a>
+			<a class="section-link" href="<?php echo esc_url( $url ); ?>"<?php echo $open_in_new_tab ? ' target="_blank" rel="noopener noreferrer"' : ''; ?>>
+				<?php echo esc_html( $label ); ?>
+				<?php if ( $open_in_new_tab ) : ?>
+					<span class="screen-reader-text"><?php esc_html_e( ' (abre en una pestaña nueva)', 'maria-jose' ); ?></span>
+				<?php endif; ?>
+			</a>
 		<?php endif; ?>
 	</div>
 	<?php

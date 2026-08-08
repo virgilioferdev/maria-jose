@@ -21,6 +21,7 @@ define( 'MARIA_JOSE_CONTENT_DIR', plugin_dir_path( __FILE__ ) );
 
 require_once MARIA_JOSE_CONTENT_DIR . 'includes/content-types.php';
 require_once MARIA_JOSE_CONTENT_DIR . 'includes/meta-boxes.php';
+require_once MARIA_JOSE_CONTENT_DIR . 'includes/contact-form.php';
 
 /**
  * Loads plugin translations.
@@ -50,4 +51,3 @@ function maria_jose_content_deactivate(): void {
 	flush_rewrite_rules();
 }
 register_deactivation_hook( __FILE__, 'maria_jose_content_deactivate' );
-

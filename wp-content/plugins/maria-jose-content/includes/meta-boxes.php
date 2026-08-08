@@ -59,6 +59,14 @@ function maria_jose_content_render_video_meta_box( WP_Post $post ): void {
 	maria_jose_content_render_input( 'youtube_id', __( 'ID o URL de YouTube', 'maria-jose-content' ), $post->ID );
 	maria_jose_content_render_input( 'video_type', __( 'Tipo (Video oficial, En vivo…)', 'maria-jose-content' ), $post->ID );
 	maria_jose_content_render_input( 'duration', __( 'Duración', 'maria-jose-content' ), $post->ID );
+	?>
+	<p>
+		<label for="featured_video">
+			<input id="featured_video" name="featured_video" type="checkbox" value="1" <?php checked( get_post_meta( $post->ID, '_featured_video', true ), '1' ); ?>>
+			<strong><?php esc_html_e( 'Mostrar como destacado en la página de inicio', 'maria-jose-content' ); ?></strong>
+		</label>
+	</p>
+	<?php
 }
 
 /**
@@ -101,6 +109,9 @@ function maria_jose_content_save_meta( int $post_id, WP_Post $post ): void {
 			);
 		}
 	}
+
+	if ( 'mj_video' === $post->post_type ) {
+		update_post_meta( $post_id, '_featured_video', isset( $_POST['featured_video'] ) ? '1' : '0' );
+	}
 }
 add_action( 'save_post', 'maria_jose_content_save_meta', 10, 2 );
-

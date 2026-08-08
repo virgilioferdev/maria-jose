@@ -25,8 +25,8 @@ function maria_jose_content_register_post_types(): void {
 			'public'       => true,
 			'show_in_rest' => true,
 			'menu_icon'    => 'dashicons-video-alt3',
-			'supports'     => array( 'title', 'page-attributes' ),
-			'has_archive'  => false,
+			'supports'     => array( 'title', 'editor', 'page-attributes' ),
+			'has_archive'  => 'videos',
 			'rewrite'      => array( 'slug' => 'videos' ),
 		)
 	);
@@ -50,4 +50,3 @@ function maria_jose_content_register_post_types(): void {
 	);
 }
 add_action( 'init', 'maria_jose_content_register_post_types' );
-

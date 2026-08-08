@@ -10,11 +10,10 @@
 			wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'site-nav__links', 'fallback_cb' => false, 'depth' => 1 ) );
 		} else {
 			?>
-			<div class="site-nav__links"><a href="#inicio">Inicio</a><a href="#videos">Videos</a><a href="#agenda">Agenda</a><a href="#sobre-mi">Sobre mí</a><a href="#contacto">Contacto</a></div>
+			<div class="site-nav__links"><a href="<?php echo esc_url( home_url( '/#inicio' ) ); ?>">Inicio</a><a href="<?php echo esc_url( get_post_type_archive_link( 'mj_video' ) ?: home_url( '/videos/' ) ); ?>">Videos</a><a href="<?php echo esc_url( home_url( '/#agenda' ) ); ?>">Agenda</a><a href="<?php echo esc_url( home_url( '/#sobre-mi' ) ); ?>">Sobre mí</a><a href="<?php echo esc_url( home_url( '/contacto/' ) ); ?>">Contacto</a><a href="<?php echo esc_url( home_url( '/prensa/' ) ); ?>">Prensa</a></div>
 			<?php
 		}
 		maria_jose_render_social_links();
 		?>
 	</div>
 </nav>
-

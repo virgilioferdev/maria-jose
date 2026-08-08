@@ -1,2 +1,98 @@
-const qs=(s,c=document)=>c.querySelector(s),qsa=(s,c=document)=>[...c.querySelectorAll(s)];function initNavigation(){const n=qs(".site-nav"),t=qs(".nav-toggle",n),p=qs(".site-nav__panel",n);if(!n||!t||!p)return;const c=()=>{t.setAttribute("aria-expanded","false"),n.classList.remove("is-open")};t.addEventListener("click",()=>{const e=t.getAttribute("aria-expanded")==="true";t.setAttribute("aria-expanded",String(!e)),n.classList.toggle("is-open",!e)}),qsa("a",p).forEach(e=>e.addEventListener("click",c)),document.addEventListener("keydown",e=>e.key==="Escape"&&c())}function initVideoPlayer(){const p=qs("[data-video-player]");if(!p)return;const f=qs("iframe",p),t=qs("[data-video-title]",p),y=qs("[data-video-type]",p),v=(i,n="",e="")=>{if(!i||!f)return;f.src=`https://www.youtube-nocookie.com/embed/${encodeURIComponent(i)}?rel=0&autoplay=1`,f.title=n||"Video de María José",t&&n&&(t.textContent=n),y&&e&&(y.textContent=e),qsa("[data-video-id]").forEach(a=>a.setAttribute("aria-pressed",String(a.dataset.videoId===i)))};qsa("[data-video-id]").forEach(c=>c.addEventListener("click",()=>v(c.dataset.videoId,c.dataset.videoTitle,c.dataset.videoType))),qsa("[data-select-video]").forEach(l=>l.addEventListener("click",()=>{const c=qs(`[data-video-id="${CSS.escape(l.dataset.selectVideo)}"]`);v(l.dataset.selectVideo,c?.dataset.videoTitle,c?.dataset.videoType)}))}function initCarousels(){qsa("[data-carousel]").forEach(c=>{const t=qs("[data-carousel-track]",c),s=()=>Math.max(260,t.clientWidth*.72);qs("[data-carousel-prev]",c)?.addEventListener("click",()=>t.scrollBy({left:-s(),behavior:"smooth"})),qs("[data-carousel-next]",c)?.addEventListener("click",()=>t.scrollBy({left:s(),behavior:"smooth"}))})}function initReveal(){const i=qsa("[data-reveal]");if(!i.length||!("IntersectionObserver"in window)){i.forEach(e=>e.classList.add("is-visible"));return}const o=new IntersectionObserver(e=>{e.forEach(r=>{r.isIntersecting&&(r.target.classList.add("is-visible"),o.unobserve(r.target))})},{threshold:.14});i.forEach(e=>o.observe(e))}initNavigation();initVideoPlayer();initCarousels();initReveal();
+const qs = (selector, context = document) => context.querySelector(selector);
+const qsa = (selector, context = document) => [...context.querySelectorAll(selector)];
 
+const initNavigation = () => {
+  const nav = qs('.site-nav');
+  const toggle = qs('.nav-toggle', nav);
+  const panel = qs('.site-nav__panel', nav);
+  if (!nav || !toggle || !panel) return;
+
+  const close = () => {
+    toggle.setAttribute('aria-expanded', 'false');
+    nav.classList.remove('is-open');
+  };
+
+  toggle.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!expanded));
+    nav.classList.toggle('is-open', !expanded);
+  });
+  qsa('a', panel).forEach((link) => link.addEventListener('click', close));
+  document.addEventListener('keydown', (event) => event.key === 'Escape' && close());
+};
+
+const initVideoPlayer = () => {
+  const player = qs('[data-video-player]');
+  if (!player) return;
+
+  const iframe = qs('iframe', player);
+  const title = qs('[data-video-title]', player);
+  const type = qs('[data-video-type]', player);
+  const description = qs('[data-video-description]', player);
+
+  const selectVideo = (id, nextTitle = '', nextType = '', nextDescription = '') => {
+    if (!id || !iframe) return;
+    iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?rel=0&autoplay=1&controls=1&playsinline=1`;
+    iframe.title = nextTitle || 'Video de María José';
+    if (title && nextTitle) title.textContent = nextTitle;
+    if (type && nextType) type.textContent = nextType;
+    if (description && nextDescription) description.textContent = nextDescription;
+    qsa('[data-video-id]').forEach((card) =>
+      card.setAttribute('aria-pressed', String(card.dataset.videoId === id)),
+    );
+  };
+
+  qsa('[data-video-id]').forEach((card) => {
+    card.addEventListener('click', () =>
+      selectVideo(
+        card.dataset.videoId,
+        card.dataset.videoTitle,
+        card.dataset.videoType,
+        card.dataset.videoDescription,
+      ),
+    );
+  });
+  qsa('[data-select-video]').forEach((link) => {
+    link.addEventListener('click', () => {
+      const card = qs(`[data-video-id="${CSS.escape(link.dataset.selectVideo)}"]`);
+      selectVideo(link.dataset.selectVideo, card?.dataset.videoTitle, card?.dataset.videoType);
+    });
+  });
+};
+
+const initCarousels = () => {
+  qsa('[data-carousel]').forEach((carousel) => {
+    const track = qs('[data-carousel-track]', carousel);
+    const step = () => Math.max(260, track.clientWidth * 0.72);
+    qs('[data-carousel-prev]', carousel)?.addEventListener('click', () =>
+      track.scrollBy({ left: -step(), behavior: 'smooth' }),
+    );
+    qs('[data-carousel-next]', carousel)?.addEventListener('click', () =>
+      track.scrollBy({ left: step(), behavior: 'smooth' }),
+    );
+  });
+};
+
+const initReveal = () => {
+  const items = qsa('[data-reveal]');
+  if (!items.length || !('IntersectionObserver' in window)) {
+    items.forEach((item) => item.classList.add('is-visible'));
+    return;
+  }
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.14 },
+  );
+  items.forEach((item) => observer.observe(item));
+};
+
+initNavigation();
+initVideoPlayer();
+initCarousels();
+initReveal();
