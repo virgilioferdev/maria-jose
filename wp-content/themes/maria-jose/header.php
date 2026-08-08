@@ -11,4 +11,6 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <a class="skip-link" href="#contenido"><?php esc_html_e( 'Saltar al contenido', 'maria-jose' ); ?></a>
-
+<header class="site-header">
+	<?php get_template_part( 'template-parts/navigation' ); ?>
+</header>

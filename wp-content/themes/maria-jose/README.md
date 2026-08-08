@@ -1,25 +1,36 @@
 # María José Oficial — WordPress theme
 
-Theme clásico moderno y sin dependencias de frontend. Usa PHP por componentes, Sass y JavaScript vanilla.
+A modern classic theme with no frontend runtime dependencies. It uses component-based PHP,
+Sass, and vanilla JavaScript.
 
-## Desarrollo
+## Development
+
+Install the development dependencies and start the Sass watcher:
 
 ```bash
 npm install
 npm run dev
 ```
 
-Para generar el CSS optimizado:
+Generate optimized production CSS with:
 
 ```bash
 npm run build
 ```
 
-## Contenido editable
+SCSS formatting runs automatically before the `dev` and `build` commands. It can
+also be applied or checked separately:
 
-- **Apariencia → Personalizar**: portada, biografía, imágenes, contacto y redes.
-- **Videos**: título, URL/ID de YouTube, tipo y duración.
-- **Agenda**: nombre del evento, fecha y ciudad.
-- **Apariencia → Menús**: navegación principal.
+```bash
+npm run format:scss
+npm run format:check
+```
 
-El theme muestra contenido inicial de respaldo hasta que se creen videos o presentaciones en WordPress.
+## Editable content
+
+- **Appearance → Customize**: hero content, biography, images, contact details, and social links.
+- **Videos**: title, YouTube URL or ID, type, and duration.
+- **Agenda**: event name, date, and city.
+- **Appearance → Menus**: primary navigation.
+
+The theme displays fallback content until videos or live shows are created in WordPress.

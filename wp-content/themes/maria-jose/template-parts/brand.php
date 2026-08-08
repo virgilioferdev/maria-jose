@@ -6,7 +6,6 @@ $brand_url = isset( $args['url'] ) ? $args['url'] : home_url( '/' );
 	<?php if ( has_custom_logo() ) : ?>
 		<?php echo wp_get_attachment_image( get_theme_mod( 'custom_logo' ), 'full' ); ?>
 	<?php else : ?>
-		<span>María José</span><small><?php esc_html_e( 'Voz de mi tierra', 'maria-jose' ); ?></small>
+		<img src="<?php echo esc_url( MARIA_JOSE_URI . '/assets/images/logo-maria-jose.png' ); ?>" alt="<?php esc_attr_e( 'María José — Voz de mi tierra', 'maria-jose' ); ?>">
 	<?php endif; ?>
 </a>
-

@@ -14,7 +14,6 @@ $accent = array_pop( $title_words );
 <section id="inicio" class="hero" aria-label="<?php esc_attr_e( 'Presentación de María José', 'maria-jose' ); ?>">
 	<img class="hero__image" src="<?php echo esc_url( $hero_image ); ?>" alt="" fetchpriority="high">
 	<div class="hero__shade" aria-hidden="true"></div>
-	<?php get_template_part( 'template-parts/navigation' ); ?>
 	<div class="hero__content">
 		<div class="hero__copy-wrap" data-reveal>
 			<p class="eyebrow"><?php echo esc_html( maria_jose_mod( 'hero_eyebrow', 'Artista Tarijeña' ) ); ?></p>
@@ -27,4 +26,3 @@ $accent = array_pop( $title_words );
 		</a>
 	</div>
 </section>
-
